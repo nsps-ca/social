@@ -1,0 +1,34 @@
+name: Notify of any events today
+
+on:
+  workflow_dispatch:
+   inputs:
+     day:
+       description: 'Date to check for events (YYYY-MM-DD)'
+       required: false
+       default: ''
+  schedule:
+  - cron: '55 12 * * *'
+  # Vancouver time, this is 5:55am, which should be before most events start.
+
+jobs:
+  notify:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Notify of events
+        run: python bsky.py --day=${{ github.event.inputs.day }}
+        env:
+          BSKY_TOKEN: ${{ secrets.BSKY_TOKEN }}
