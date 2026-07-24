@@ -31,7 +31,7 @@ More information at https://nsps.ca
     if bsky_token:
         session = BskySession("northshoreps.bsky.social", bsky_token)
         post_text(session, text)
-        print(f"✅ Bluesky post sent for: {tomorrow}.")
+        print(f"✅ Bluesky post sent for: {event.DTSTART.strftime('%b %d')}.")
     else:
         print(text)
         print(f"❌ No Bluesky token, not sent")
