@@ -1,4 +1,4 @@
-name: Notify of any events today
+name: Notify of any events tomorrow
 
 on:
   workflow_dispatch:
