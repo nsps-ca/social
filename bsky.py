@@ -40,7 +40,7 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--day')
     args = parser.parse_args()
-    day = datetime.date.strptime(args.day, "%Y-%m-%d") if args.day else datetime.date.today()
+    day = datetime.date.strptime(args.day, "%Y-%m-%d") if args.day else tomorrow
     print(f"ℹ️ Looking for events for the day {day}")
     
     get_events_from_calendar(day)
