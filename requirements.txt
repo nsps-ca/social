@@ -18,3 +18,5 @@ typing-extensions==4.16.0
 tzdata==2026.3
 urllib3==2.7.0
 webencodings==0.6.1
+slack-bolt==1.28.0
+slack-sdk==3.42.0

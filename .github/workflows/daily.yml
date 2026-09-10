@@ -43,5 +43,7 @@ jobs:
         
       - name: Web site changes
         run: python web.py
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
       - uses: stefanzweifel/git-auto-commit-action@v4
