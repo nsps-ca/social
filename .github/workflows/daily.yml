@@ -33,3 +33,8 @@ jobs:
         env:
           BSKY_TOKEN: ${{ secrets.BSKY_TOKEN }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        
+      - name: Web site changes
+        run: python web.py
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
