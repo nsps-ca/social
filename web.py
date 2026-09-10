@@ -7,7 +7,7 @@ from slack_sdk.errors import SlackApiError
 
 slack_token = os.environ.get("SLACK_BOT_TOKEN", None)
 client = WebClient(token=slack_token)
-channel = "#itstrategy"
+channel = "#it-strategy"
 
 def send_to_slack(msg):
     if not slack_token:
