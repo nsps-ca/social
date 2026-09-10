@@ -38,7 +38,7 @@ def check_website():
         
     elif not social_media:
         print("👍 Image has changed, but social media is set to `No`, so don't post.")
-        msg = f"📣 The image on the website changed to {srv} but is NOT approved to post on social media, so don't do that."
+        msg = f"📣 The image on the website changed to {src} but is NOT approved to post on social media, so don't do that."
         send_to_slack(msg)
 
     elif social_media:
