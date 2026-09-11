@@ -29,8 +29,10 @@ def check_website():
     res = requests.get("https://nsps.ca", headers={"User-Agent": "mod_security sucks"})
     res.raise_for_status()
     soup = BeautifulSoup(res.content, 'html.parser')
-    hero = soup.find_all("img")[1]
+    hero = soup.find("figure").find("img")
     src = hero["src"]
+    who = soup.find("figure").find("figcaption").next_element.strip()
+    what = soup.find("figure").find("figcaption").next_element.next_element.text.strip()
     social_media = True if "SOCYes" in src else False
 
     if src == old_image:
@@ -38,12 +40,12 @@ def check_website():
         
     elif not social_media:
         print("👍 Image has changed, but social media is set to `No`, so don't post.")
-        msg = f"📣 The image on the website changed to {src} but is NOT approved to post on social media, so don't do that."
+        msg = f"📣 The image on the website changed to {src} by **{who}**, titled **{what}**. However is *NOT* approved to post on social media, so please don't do that."
         send_to_slack(msg)
 
     elif social_media:
         print("✅ Image has changed, and social media is set to `Yes`, so let's share it.")
-        msg = f"📣 The image on the website changed to {src} and has approval to post on social media."
+        msg = f"📣 The image on the website changed to {src} by **{who}**, titled **{what}** and has approval 👍 to post on social media ."
         send_to_slack(msg)
 
     with open(".old-image", "w") as f:
