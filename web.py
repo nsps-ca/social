@@ -18,7 +18,7 @@ def send_to_slack(image):
         print(msg)
         return
 
-    summary = f"📣 Image has changed on the website to *{image['what']}* by *{image['who']}*"
+    summary = f"📣 Image has changed on the NSPS website to *{image['what']}* by *{image['who']}*"
     social = "⛔️ This image is *NOT* approved for posting on social media, so please don't do that."
     if social:
         social = "✅ This image is approved to share on NSPS social media accounts."
