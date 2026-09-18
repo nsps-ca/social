@@ -1,15 +1,8 @@
-name: Notify of any events tomorrow
+name: Notify of any website changes
 
 on:
-  workflow_dispatch:
-   inputs:
-     day:
-       description: 'Date to check for events (YYYY-MM-DD)'
-       required: false
-       default: ''
   schedule:
   - cron: '55 12 * * *'
-  # Vancouver time, this is 5:55am, which should be before most events start.
 
 jobs:
   notify:
@@ -34,13 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-      
-      - name: Notify of events
-        run: python socials.py --day=${{ github.event.inputs.day }}
-        env:
-          BSKY_TOKEN: ${{ secrets.BSKY_TOKEN }}
-          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        
+              
       - name: Web site changes
         run: python web.py
         env:
